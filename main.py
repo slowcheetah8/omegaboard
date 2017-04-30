@@ -7,26 +7,26 @@ button = Pin(0, Pin.IN)
 
 
 #Setting initial relay states
-relay_1.value(0)
-relay_2.value(0)
+relay_1.value(1)
+relay_2.value(1)
 last_direction = 'up'
 
 def up():
     global last_direction
     last_direction = 'up'
-    relay_1(1)
+    relay_1(0)
 
 def down():
     global last_direction
     last_direction = 'down'
-    relay_2(1)
+    relay_2(0)
 
 def read_states():
     print("R1 = ", relay_1.value(), " R2 =", relay_2.value())
 
 def all_off():
-    relay_1.value(0)
-    relay_2.value(0)
+    relay_1.value(1)
+    relay_2.value(1)
 
 # print initial states               
 print(read_states())
@@ -47,8 +47,8 @@ def main():
         #if button is pressed
         if button.value() == 0:
             #if stopped
-            if relay_1.value() == 0 and relay_2.value() == 0:
+            if relay_1.value() == 1 and relay_2.value() == 1:
                 run()
-            elif relay_1.value() == 1 or relay_2.value() == 1:
+            elif relay_1.value() == 0 or relay_2.value() == 0:
                 all_off()
                 
